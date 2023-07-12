@@ -1,0 +1,48 @@
+<div class="myForm">
+    <div class="container">
+        <form (ngSubmit)="onSubmit()" [formGroup]="formRadio" class="p-4">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="Enter Your First Name" formControlName="firstName">
+                    <div *ngIf="formRadio.controls.firstName.errors?.Required && (formRadio.controls.firstName.touched || formRadio.controls.firstName.dirty)">First Name is Required...</div>
+                </div>
+                <div class="col-md-6">
+                    <label for="lastName">Last name</label>
+                    <input type="text" formControlName="lastName" class="form-control" placeholder="Enter Your Last Name">
+                    <div *ngIf="formRadio.controls.lastName.errors?.Required && (formRadio.controls.lastName.touched || formRadio.controls.lastName.dirty)">Last Name is Required...</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6 mb-3">
+                    <label>How should we contact with you?</label>
+                    <div class="form-check">
+                        <input type="radio" id="emailOpt" value="Email" formControlName="contactDetails">
+                        <label for="emailOpt" class="form-check-label">Email</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" id="phoneOpt" value="Phone" class="form-check-input" formControlName="contactDetails">
+                        <label for="phoneOpt" class="form-check-label">Phone</label>
+                    </div>
+                    <div *ngIf="formRadio.controls.contactDetails.error?.Required && (formRadio.controls.contactDetails.touched || formRadio.controls.contactDetails.dirty)">Contact is Required...</div>
+                </div>
+                <div class="form-group col-md-6 mb-3" *ngIf="formRadio.controls.contactDetails.value === 'Email'">
+                    <label for="contactInfo">Email</label>
+                    <input type="email" class="form-control" id="contactInfo" placeholder="Enter Email Address" formControlName="contactInfo">
+                    <div *ngIf="formRadio.controls.contactInfo.errors?. Required && (formRadio.controls.contactInfo.touched || formRadio.controls.contactInfo.dirty)" class="text-danger">Email is Required...</div>
+                </div>
+                <div class="form-group col-md-6 mb-3" *ngIf="formRadio.controls.contactDetails.value === 'Phone'">
+                    <label for="contactInfo">Phone Number</label>
+                    <input type="text" class="form-control" id="contactInfo" placeholder="Phone Number" formControlName="contactInfo">
+                    
+                    <div *ngIf="formRadio.controls.contactInfo.errors?.Required && (formRadio.controls.contactInfo.touched || formRadio.controls.contactInfo.dirty)" class="text-danger">
+                        Phone Number is required...
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

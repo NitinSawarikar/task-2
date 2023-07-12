@@ -1,0 +1,42 @@
+<div class="myForm">
+    <div class="container">
+        <form (ngSubmit)="onSubmit()" [formGroup]="formDropDown" class="p-4">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="First name" formControlName="firstname">
+                    <div *ngIf="formDropDown.controls.firstname.errors?.required && (formDropDown.controls.firstname.touched || formDropDown.controls.firstname.dirty)" class="text-danger">First Name is required</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Last name" formControlName="lastname">
+                    <div *ngIf="formDropDown.controls.lastname.errors?.required && (formDropDown.controls.lastname.touched || formDropDown.controls.lastname.dirty)" class="text-danger">Last Name is required</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6 mb-3">
+                    <label for="contactMethod">How should we contact you?</label>
+                    <select id="contactMethod" class="form-control" formControlName="contactMethod">
+                        <option value="" selected>Choose option</option>
+                        <option value="Email">Email</option>
+                        <option value="Phone">Phone</option>
+                    </select>
+                    <div *ngIf="formDropDown.controls.contactMethod.errors?.required && (formDropDown.controls.contactMethod.touched || formDropDown.controls.contactMethod.dirty)" class="text-danger">Contact Method is required</div>
+                </div>
+                <div class="form-group col-md-6 mb-3" *ngIf="formDropDown.controls.contactMethod.value === 'Email'">
+                    <label for="contactInfo">Contact Information</label>
+                    <input type="email" class="form-control" id="contactInfo" placeholder="Email" formControlName="contactInfo">
+                    <div *ngIf="formDropDown.controls.contactInfo.errors?.required && (formDropDown.controls.contactInfo.touched || formDropDown.controls.contactInfo.dirty)" class="text-danger">Contact Information is required</div>
+                </div>
+                <div class="form-group col-md-6 mb-3" *ngIf="formDropDown.controls.contactMethod.value === 'Phone'">
+                    <label for="contactInfo">Contact Information</label>
+                    <input type="text" class="form-control" id="contactInfo" placeholder="Phone Number" formControlName="contactInfo">
+                    <div *ngIf="formDropDown.controls.contactInfo.errors?.required && (formDropDown.controls.contactInfo.touched || formDropDown.controls.contactInfo.dirty)" class="text-danger">Contact Information is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-lg">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
